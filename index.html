@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Test 3</title>
+ 
+  <style>
+    body {
+      background-color: #FFFFFF;
+      transition: all 1s ease-in;
+      padding: 50px;
+      color: #111;
+      font-family: sans-serif;
+      line-height: 32px;
+      font-size: 18px;
+    }
+ 
+ 
+    .colorOne {
+      background-color: #FFFFFF;
+      color: #000;
+    }
+ 
+    .colorTwo {
+      background-color: #000000;
+      color: #000;
+    }
+ 
+    #mainContent {
+      margin: 0 auto;
+    }
+ 
+    #mainContent #firstBox {
+      font-weight: bold;
+      transition: all .5s ease-out;
+      opacity: 0;
+    }
+ 
+    #mainContent #firstBox.active {
+      background-color: #333;
+      color: #FFF;
+      opacity: 1;
+    }
+ 
+    #mainContent #secondBox {
+      transition: all .5s ease-in-out;
+      transform: translate3d(0, 5px, 0);
+      opacity: 0;
+    }
+ 
+    #mainContent #secondBox.active {
+      background-color: #1581AF;
+      color: #FFF;
+      transform: translate3d(0, 5px, 0);
+      opacity: 1;
+    }
+
+  </style>
+</head>
+ 
+<body>
+  <div id="mainContent">
+  <div style="width: 1000px; float: left;">
+	<img id="firstBox" src="page 1.png" style="float: left; width: 100%; margin-right: 0; margin-bottom: 0.5em;">
+	<audio id="track">
+      <source src="andrea_ferrante_shuluq_for_solo_clarinet_youtube.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+  <div style="margin-left: 1000px; width: 1000px;">
+	<img id="secondBox" src="page 2.png" style="float: left; width: 100%; margin-right: 0; margin-bottom: 0.5em;">
+  </div>
+  </div>
+ 
+  <script>
+    var isScrolling = false;
+ 
+    window.addEventListener("scroll", throttleScroll, false);
+ 
+    function throttleScroll(e) {
+      if (isScrolling == false) {
+        window.requestAnimationFrame(function() {
+          scrolling(e);
+          isScrolling = false;
+        });
+      }
+      isScrolling = true;
+    }
+ 
+    document.addEventListener("DOMContentLoaded", scrolling, false);
+ 
+    var listItems = document.querySelectorAll("#mainContent ol li");
+    var firstBox = document.querySelector("#firstBox");
+    var secondBox = document.querySelector("#secondBox");
+	var track = document.getElementById("track");
+ 
+    function scrolling(e) {
+ 
+      if (isPartiallyVisible(firstBox)) {
+        firstBox.classList.add("active");
+		track.play()
+ 
+        document.body.classList.add("colorOne");
+        document.body.classList.remove("colorTwo");
+      } else {
+        document.body.classList.remove("colorOne");
+        document.body.classList.remove("colorTwo");
+      }
+	  
+	  if (isPartiallyVisible(secondBox)) {
+        secondBox.classList.add("active");
+		track.pause()
+      }
+ 
+      if (isFullyVisible(secondBox)) {
+	    track.play()
+        document.body.classList.add("colorTwo");
+        document.body.classList.remove("colorOne");
+      }
+ 
+      for (var i = 0; i < listItems.length; i++) {
+        var listItem = listItems[i];
+ 
+        if (isPartiallyVisible(listItem)) {
+          listItem.classList.add("active");
+        } else {
+          listItem.classList.remove("active");
+        }
+      }
+    }
+ 
+    function isPartiallyVisible(el) {
+      var elementBoundary = el.getBoundingClientRect();
+ 
+      var left = elementBoundary.left;
+      var right = elementBoundary.right;
+      var width = elementBoundary.width;
+ 
+      return ((left + width >= 0) && (width + window.innerWidth >= right));
+    }
+ 
+    function isFullyVisible(el) {
+      var elementBoundary = el.getBoundingClientRect();
+ 
+      var left = elementBoundary.left;
+      var right = elementBoundary.right;
+ 
+      return ((left >= 0) && (right <= window.innerWidth));
+    }
+
+  </script>
+</body>
+ 
+</html>
