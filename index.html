@@ -3,7 +3,7 @@
  
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Test 3</title>
+  <title>The Bardic Compass</title>
  
   <style>
     body {
@@ -11,11 +11,28 @@
       transition: all 1s ease-in;
       padding: 50px;
       color: #111;
-      font-family: sans-serif;
+      font-family: Georgia, sans-serif;
       line-height: 32px;
-      font-size: 18px;
+      font-size: 165px;
+	  white-space: nowrap;
+	  display: table-cell;
+      vertical-align: middle;
     }
- 
+	
+	.outer {
+      display: table;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+    }
+   
+    .middle {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    .inner {
+    }
  
     .colorOne {
       background-color: #FFFFFF;
@@ -60,18 +77,14 @@
 </head>
  
 <body>
-  <div id="mainContent">
-  <div style="width: 1000px; float: left;">
-	<img id="firstBox" src="page 1.png" style="float: left; width: 100%; margin-right: 0; margin-bottom: 0.5em;">
-	<audio id="track">
-      <source src="andrea_ferrante_shuluq_for_solo_clarinet_youtube.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
-  </div>
-  <div style="margin-left: 1000px; width: 1000px;">
-	<img id="secondBox" src="page 2.png" style="float: left; width: 100%; margin-right: 0; margin-bottom: 0.5em;">
+  <div class="outer">
+  <div class="middle">
+  <div class="inner">Once upon a time there were four bards  who lived together in harmony. One day, while searching for new songs, they stumbled upon an ancient compass that gave them incredible power. This compass gave them the ability to control people. The more they searched, the more compasses they found until the bards held enough power to control anyone with a simple sentence or line of music. The bards were wise and knew this power could be used for great things, both pure and evil. If everyone could use the compasses, they would lose all their power, but if the bards kept the compasses to themselves, a great power could be lost to people who might need it. So they decided to keep the compasses hidden where only those of the right heart who needed this power for good could reach it.
+Why would the compasses lose their power if they were available to everyone?</div>
   </div>
   </div>
+
+ 
  
   <script>
     var isScrolling = false;
