@@ -9,7 +9,7 @@
     body {
       background-color: #FFFFFF;
       transition: all 1s ease-in;
-      padding: 50px;
+      padding-left: 50px;
       color: #111;
       font-family: Georgia, sans-serif;
       line-height: 32px;
@@ -31,136 +31,37 @@
       vertical-align: middle;
     }
 
-    .inner {
+    #content {
+	  background-color:white;
     }
+	
+	#content.active {
+	  background-color: black;
+	}
  
-    .colorOne {
-      background-color: #FFFFFF;
-      color: #000;
-    }
- 
-    .colorTwo {
-      background-color: #000000;
-      color: #000;
-    }
- 
-    #mainContent {
-      margin: 0 auto;
-    }
- 
-    #mainContent #firstBox {
-      font-weight: bold;
-      transition: all .5s ease-out;
-      opacity: 0;
-    }
- 
-    #mainContent #firstBox.active {
-      background-color: #333;
-      color: #FFF;
-      opacity: 1;
-    }
- 
-    #mainContent #secondBox {
-      transition: all .5s ease-in-out;
-      transform: translate3d(0, 5px, 0);
-      opacity: 0;
-    }
- 
-    #mainContent #secondBox.active {
-      background-color: #1581AF;
-      color: #FFF;
-      transform: translate3d(0, 5px, 0);
-      opacity: 1;
-    }
 
   </style>
 </head>
  
 <body>
   <div class="outer">
-  <div class="middle">
+  <div class="middle" id="content">
   <div class="inner">Once upon a time there were four bards  who lived together in harmony. One day, while searching for new songs, they stumbled upon an ancient compass that gave them incredible power. This compass gave them the ability to control people. The more they searched, the more compasses they found until the bards held enough power to control anyone with a simple sentence or line of music. The bards were wise and knew this power could be used for great things, both pure and evil. If everyone could use the compasses, they would lose all their power, but if the bards kept the compasses to themselves, a great power could be lost to people who might need it. So they decided to keep the compasses hidden where only those of the right heart who needed this power for good could reach it.
 Why would the compasses lose their power if they were available to everyone?</div>
   </div>
-  </div>
-
- 
+  </div> 
  
   <script>
-    var isScrolling = false;
- 
-    window.addEventListener("scroll", throttleScroll, false);
- 
-    function throttleScroll(e) {
-      if (isScrolling == false) {
-        window.requestAnimationFrame(function() {
-          scrolling(e);
-          isScrolling = false;
-        });
-      }
-      isScrolling = true;
+    var item = document.getElementById("content")
+	
+    window.addEventListener('scroll', function(e) {
+    if (window.scrollX > 300) {
+      item.classList.add('active')
+    } else {
+    item.classList.remove('active')
     }
- 
-    document.addEventListener("DOMContentLoaded", scrolling, false);
- 
-    var listItems = document.querySelectorAll("#mainContent ol li");
-    var firstBox = document.querySelector("#firstBox");
-    var secondBox = document.querySelector("#secondBox");
-	var track = document.getElementById("track");
- 
-    function scrolling(e) {
- 
-      if (isPartiallyVisible(firstBox)) {
-        firstBox.classList.add("active");
-		track.play()
- 
-        document.body.classList.add("colorOne");
-        document.body.classList.remove("colorTwo");
-      } else {
-        document.body.classList.remove("colorOne");
-        document.body.classList.remove("colorTwo");
-      }
-	  
-	  if (isPartiallyVisible(secondBox)) {
-        secondBox.classList.add("active");
-		track.pause()
-      }
- 
-      if (isFullyVisible(secondBox)) {
-	    track.play()
-        document.body.classList.add("colorTwo");
-        document.body.classList.remove("colorOne");
-      }
- 
-      for (var i = 0; i < listItems.length; i++) {
-        var listItem = listItems[i];
- 
-        if (isPartiallyVisible(listItem)) {
-          listItem.classList.add("active");
-        } else {
-          listItem.classList.remove("active");
-        }
-      }
-    }
- 
-    function isPartiallyVisible(el) {
-      var elementBoundary = el.getBoundingClientRect();
- 
-      var left = elementBoundary.left;
-      var right = elementBoundary.right;
-      var width = elementBoundary.width;
- 
-      return ((left + width >= 0) && (width + window.innerWidth >= right));
-    }
- 
-    function isFullyVisible(el) {
-      var elementBoundary = el.getBoundingClientRect();
- 
-      var left = elementBoundary.left;
-      var right = elementBoundary.right;
- 
-      return ((left >= 0) && (right <= window.innerWidth));
-    }
+	
+	});
 
   </script>
 </body>
