@@ -30,13 +30,14 @@
       display: table-cell;
       vertical-align: middle;
     }
-
-    #content {
-	  background-color:white;
-    }
 	
-	#content.active {
-	  background-color: black;
+	#searching {
+	  padding-left: 30em;
+	  color: white;
+	}
+	
+	#searching.active {
+	  color: black;
 	}
  
 
@@ -46,16 +47,17 @@
 <body>
   <div class="outer">
   <div class="middle" id="content">
-  <div class="inner">Once upon a time there were four bards  who lived together in harmony. One day, while searching for new songs, they stumbled upon an ancient compass that gave them incredible power. This compass gave them the ability to control people. The more they searched, the more compasses they found until the bards held enough power to control anyone with a simple sentence or line of music. The bards were wise and knew this power could be used for great things, both pure and evil. If everyone could use the compasses, they would lose all their power, but if the bards kept the compasses to themselves, a great power could be lost to people who might need it. So they decided to keep the compasses hidden where only those of the right heart who needed this power for good could reach it.
+  <div class="inner"><p id="opener"><img src="The Compass.png" width="200" height="200" alt="The Compass">nce upon a time there were four bards who lived together in harmony.</p>
+					 <p id="searching">One day, while searching for new songs, they stumbled upon an ancient compass that gave them incredible power. This compass gave them the ability to control people. The more they searched, the more compasses they found until the bards held enough power to control anyone with a simple sentence or line of music. The bards were wise and knew this power could be used for great things, both pure and evil. If everyone could use the compasses, they would lose all their power, but if the bards kept the compasses to themselves, a great power could be lost to people who might need it. So they decided to keep the compasses hidden where only those of the right heart who needed this power for good could reach it.
 Why would the compasses lose their power if they were available to everyone?</div>
   </div>
   </div> 
  
   <script>
-    var item = document.getElementById("content")
+    var item = document.getElementById("searching")
 	
     window.addEventListener('scroll', function(e) {
-    if (window.scrollX > 300) {
+    if (window.scrollX > 5000) {
       item.classList.add('active')
     } else {
     item.classList.remove('active')
